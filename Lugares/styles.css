@@ -24,8 +24,7 @@ body {
 
 .texto-tarjeta {
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  color: #000000;
 }
 
 .texto-tarjeta h2 {

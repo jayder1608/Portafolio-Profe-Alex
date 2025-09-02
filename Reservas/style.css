@@ -1,0 +1,181 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: url('fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255, 255, 255, 0.192), rgba(230,240,255,0.85));
+  z-index:-1;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+header {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+header .actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+  gap: 18px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  overflow: hidden;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-body {
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.card-body[data-estado="disponible"] {
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+}
+.card-body[data-estado="ocupada"] {
+  background: linear-gradient(135deg, #2563eb, #60a5fa);
+}
+.card-body[data-estado="deshabilitada"] {
+  background: linear-gradient(135deg, #111, #444);
+}
+
+.card-body[data-tipo="reserva"] {
+  background: linear-gradient(135deg, #9333ea, #c084fc);
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary { background: #2563eb; color: #fff; }
+.btn-success { background: #16a34a; color: #fff; }
+.btn-danger  { background: #dc2626; color: #fff; }
+.btn-ghost   { background: rgba(255,255,255,0.2); color: #fff; }
+
+.btn:hover { opacity: 0.85; }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+.toast.hidden { display: none; }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal.hidden { display: none; }
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  max-width: 500px;
+  width: 100%;
+  color: #000;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.field label { font-weight: bold; margin-bottom: 4px; }
+.field input, .field select {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+.badge-amber { background: #f59e0b; }
+.badge-green { background: #16a34a; }
+.badge-red   { background: #dc2626; }
+.badge-blue  { background: #2563eb; }
+.badge-neutral { background: #000000; }
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+  .card { max-width: 100%; }
+}

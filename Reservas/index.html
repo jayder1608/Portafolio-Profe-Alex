@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Reservas - Mesas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gestión de Mesas</h1>
+    <div class="actions">
+      <button id="btnAddMesa" class="btn btn-primary">➕ Nueva Mesa</button>
+      <a href="reservas.html" class="btn btn-success">📑 Ver Reservas</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Mesas Disponibles</h2>
+      <div id="mesasGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+        <button id="modalClose" class="btn btn-danger">✖</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
