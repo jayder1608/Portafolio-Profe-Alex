@@ -1,4 +1,3 @@
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -93,6 +92,7 @@ header .actions {
 .btn-success { background: #16a34a; color: #fff; }
 .btn-danger  { background: #dc2626; color: #fff; }
 .btn-ghost   { background: rgba(255,255,255,0.2); color: #fff; }
+.btn-info    { background: #0ea5e9; color: #fff; }
 
 .btn:hover { opacity: 0.85; }
 
@@ -171,6 +171,60 @@ header .actions {
 .badge-red   { background: #dc2626; }
 .badge-blue  { background: #2563eb; }
 .badge-neutral { background: #000000; }
+
+/* Estilos para badges de estado de reserva */
+.badge-Pendiente { background: #f59e0b; }
+.badge-Confirmada { background: #16a34a; }
+.badge-Cancelada { background: #dc2626; }
+.badge-Finalizada { background: #2563eb; }
+.badge-No.Show { background: #000000; }
+
+/* Mejorar visualización de imágenes de ocasión especial */
+.card-body[data-tipo="reserva"] img {
+  max-width: 80px;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Estilos para formularios en modales */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content .form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-content .form-row .field {
+  flex: 1;
+}
+
+/* Mejorar visualización en móviles */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  header .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  header .actions .btn {
+    margin-bottom: 8px;
+    width: 100%;
+  }
+  
+  .filters {
+    flex-direction: column;
+  }
+}
 
 @media (max-width: 480px) {
   .grid {
