@@ -11,7 +11,6 @@ const load  = (k)=> JSON.parse(localStorage.getItem(k) || "[]");
 const save  = (k,v)=> localStorage.setItem(k, JSON.stringify(v));
 const genId = (p="id") => p+"-"+Math.random().toString(36).slice(2,9);
 
-// SweetAlert helpers
 function swalToast(message, icon="info"){
   Swal.fire({ 
     toast:true, position:"top-end", showConfirmButton:false, timer:2200, timerProgressBar:true,
@@ -26,7 +25,7 @@ async function swalConfirm({title="¿Estás seguro?", text="Esta acción no se p
   return r.isConfirmed;
 }
 
-// Validaciones / tiempo
+
 function isFutureDate(d){ 
   if(!d) return false; 
   const today = new Date(); today.setHours(0,0,0,0);
@@ -48,7 +47,7 @@ function timeToMinutes(timeString) {
 }
 function timeIntervalsOverlap(start1, end1, start2, end2) {
   return (timeToMinutes(start1) < timeToMinutes(end2)) && 
-         (timeToMinutes(start2) < timeToMinutes(end1));
+(timeToMinutes(start2) < timeToMinutes(end1));
 }
 function rangoReserva(reserva) {
   const inicio = reserva.horaReserva;
@@ -56,7 +55,6 @@ function rangoReserva(reserva) {
   return { inicio, fin };
 }
 
-// Disponibilidad / estados
 function mesaDisponible(idMesa, fecha, hora, ignore=null) {
   const reservas = load(KEYS.RESERVAS);
   const nueva = { fechaReserva: fecha, horaReserva: hora };
@@ -86,7 +84,6 @@ function mesaDisponible(idMesa, fecha, hora, ignore=null) {
   return true;
 }
 
-// (repuesto) Cambiar estado puntual de una mesa y re-render
 function actualizarEstadoMesa(idMesa, nuevoEstado) {
   const mesas = load(KEYS.MESAS);
   const i = mesas.findIndex(m => m.id === idMesa);
@@ -97,7 +94,6 @@ function actualizarEstadoMesa(idMesa, nuevoEstado) {
   }
 }
 
-// Recalcular estados de todas las mesas con reservas vigentes (hoy o futuro)
 function actualizarEstadosMesas() {
   const mesas = load(KEYS.MESAS);
   const reservas = load(KEYS.RESERVAS);
@@ -115,7 +111,6 @@ function actualizarEstadosMesas() {
   if (typeof renderMesas === 'function') renderMesas();
 }
 
-// Helpers UI
 function generarOpcionesHora() {
   const horas = [];
   for (let h = 8; h <= 20; h++) {
@@ -127,7 +122,6 @@ function generarOpcionesHora() {
   return horas;
 }
 
-// Mesa id
 function ensureMesaIdFromNumber(numStr){
   const n = String(numStr || "").trim();
   if(!/^\d+$/.test(n)) return null;
@@ -138,7 +132,6 @@ function splitMesaNumberFromId(id){
   return m ? m[1] : "";
 }
 
-// Init
 function initData(){
   if(!localStorage.getItem(KEYS.MESAS)){
     save(KEYS.MESAS, [
@@ -151,7 +144,6 @@ function initData(){
   actualizarEstadosMesas();
 }
 
-// Render Mesas
 function renderMesas(){
   const grid=$("#mesasGrid"); if(!grid) return;
   grid.innerHTML="";
@@ -202,7 +194,6 @@ function renderMesas(){
   });
 }
 
-// Render Reservas (con imagen opcional)
 function renderReservas(){
   const grid=$("#reservasGrid"); if(!grid) return;
   grid.innerHTML="";
@@ -330,8 +321,6 @@ function renderReservas(){
     });
   }
 }
-
-// CRUD Mesas
 function openModalCrearMesa(){ 
   openModal("Nueva Mesa", formMesa(), { locked: true }); 
 }
@@ -413,7 +402,6 @@ function formMesa(mesa={}){
   return f;
 }
 
-// CRUD Reservas
 function openModalCrearReserva(){ 
   openModal("Nueva Reserva", formReserva(), { locked: true }); 
 }
@@ -437,7 +425,7 @@ function pagarReserva(id){
   if (i !== -1) {
     rs[i].estado="Finalizada";
     save(KEYS.RESERVAS,rs);
-    actualizarEstadosMesas();   // recalcula según reservas vigentes
+    actualizarEstadosMesas();
     if (typeof renderReservas === 'function') renderReservas();
     Swal.fire({ icon:"success", title:"Reserva finalizada", text:"Mesa liberada correctamente.", timer:1500, showConfirmButton:false });
   }
@@ -446,7 +434,6 @@ function pagarReserva(id){
 function formReserva(r = {}) {
   const f = document.createElement("form");
 
-  // Desactivar validación nativa
   f.noValidate = true;
   f.addEventListener("invalid", (e) => e.preventDefault(), true);
 
@@ -456,7 +443,6 @@ function formReserva(r = {}) {
   
   const todasLasMesas = load(KEYS.MESAS);
 
-  // Mesas disponibles + incluir mesa actual si se está editando
   let mesasParaSelect = todasLasMesas.filter(m => m.estado === "disponible");
   if (r.idMesaAsignada) {
     const mesaActual = todasLasMesas.find(m => m.id === r.idMesaAsignada);
@@ -590,7 +576,6 @@ function formReserva(r = {}) {
   return f;
 }
 
-// Modal
 let _modalEscHandler = null;
 function openModal(title, content, options = { locked: true }){
   if(!$("#modal")) return;
@@ -626,7 +611,6 @@ function closeModal(){
   }
 }
 
-// Listeners
 if($("#modalClose")) $("#modalClose").addEventListener("click",closeModal);
 if($("#btnAddMesa")) $("#btnAddMesa").addEventListener("click",openModalCrearMesa);
 if($("#btnAddReserva")) $("#btnAddReserva").addEventListener("click",openModalCrearReserva);
@@ -640,7 +624,6 @@ if($("#btnClearFiltros")) $("#btnClearFiltros").addEventListener("click", ()=>{
   renderReservas();
 });
 
-// Boot
 document.addEventListener('DOMContentLoaded', function() {
   initData();
   if ($("#mesasGrid")) renderMesas();
