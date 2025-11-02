@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Reservas - Reservas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gestión de Reservas</h1>
+    <div class="actions">
+      <a href="index.html" class="btn btn-primary">⬅️ Volver a Mesas</a>
+      <button id="btnAddReserva" class="btn btn-success">➕ Nueva Reserva</button>
+    </div>
+
+    <div class="filters" style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;">
+      <div class="field">
+        <label for="filtroMesa">Filtrar por Mesa:</label>
+        <select id="filtroMesa">
+          <option value="">Todas</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filtroEstado">Filtrar por Estado:</label>
+        <select id="filtroEstado">
+          <option value="">Todos</option>
+          <option>Pendiente</option>
+          <option>Confirmada</option>
+          <option>Cancelada</option>
+          <option>Finalizada</option>
+          <option>No Show</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filtroFecha">Filtrar por Fecha:</label>
+        <input type="date" id="filtroFecha">
+      </div>
+      <button id="btnClearFiltros" class="btn btn-danger">❌ Limpiar Filtros</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Reservas Registradas</h2>
+      <div id="reservasGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+        <button id="modalClose" class="btn btn-danger">✖</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reinos de Eldoria - Héroes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            cursor: url('cursors/normal.cur'), auto;
+            background: 
+                linear-gradient(to bottom, rgba(30, 60, 90, 0.7), rgba(44, 92, 127, 0.7)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%23005eb8"/><stop offset="50%" stop-color="%230077e6"/><stop offset="100%" stop-color="%2366b3ff"/></linearGradient></defs><rect width="400" height="400" fill="url(%23sky)"/><g opacity="0.3"><circle cx="100" cy="80" r="20" fill="%23ffffff"/><circle cx="300" cy="120" r="15" fill="%23ffffff"/><circle cx="200" cy="60" r="10" fill="%23ffffff"/><circle cx="350" cy="50" r="8" fill="%23ffffff"/></g></svg>');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .attack-action {
+            cursor: url('cursors/cursor.cur'), pointer;
+        }
+        .draggable {
+            cursor: url('cursors/move.cur'), move;
+        }
+        .disabled-action {
+            cursor: url('cursors/disabled.cur'), not-allowed;
+        }
+        
+        /* Efecto de nubes suaves en movimiento */
+        @keyframes cloudMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.2), transparent 25%),
+                radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.15), transparent 20%),
+                radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.1), transparent 30%);
+            pointer-events: none;
+            animation: cloudMove 60s infinite linear;
+            z-index: -1;
+              background: url('fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+        }
+    </style>
+</head>
+<body class="heroes-page">
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="heroes.html">Héroes</a></li>
+            <li><a href="antagonistas.html">Antagonistas</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h2 class="page-title">Alianza de la Luz</h2>
+        
+        <div class="characters-grid">
+            <!-- Héroe 1 - ELFO -->
+            <div class="character-card">
+                <div class="character-image">
+                    <!-- REEMPLAZAR CON: <img src="images/heroes/elfo.jpg" alt="Elfo Arquero"> -->
+                    <img src="https://placehold.co/300x400/2c5c7f/ffffff?text=Elfo+Arquero" alt="Elfo Arquero">
+                </div>
+                <div class="character-info">
+                    <h3 class="character-name">Lyra Silvertongue</h3>
+                    <div class="character-stats">
+                        <div class="stat">
+                            <div class="stat-value">85</div>
+                            <div class="stat-name">Fuerza</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">70</div>
+                            <div class="stat-name">Magia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">95</div>
+                            <div class="stat-name">Agilidad</div>
+                        </div>
+                    </div>
+                    <p class="character-description">Elfa arquera con una precisión legendaria. Sus flechas nunca fallan y puede moverse sigilosamente entre los árboles del Bosque Ancestral.</p>
+                </div>
+            </div>
+            
+            <!-- Héroe 2 - ENANO -->
+            <div class="character-card">
+                <div class="character-image">
+                    <!-- REEMPLAZAR CON: <img src="images/heroes/enano.jpg" alt="Guerrero Enano"> -->
+                    <img src="https://placehold.co/300x400/2c5c7f/ffffff?text=Guerrero+Enano" alt="Guerrero Enano">
+                </div>
+                <div class="character-info">
+                    <h3 class="character-name">Thordin Barbaférrea</h3>
+                    <div class="character-stats">
+                        <div class="stat">
+                            <div class="stat-value">95</div>
+                            <div class="stat-name">Fuerza</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">40</div>
+                            <div class="stat-name">Magia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">65</div>
+                            <div class="stat-name">Agilidad</div>
+                        </div>
+                    </div>
+                    <p class="character-description">Guerrero enano conocido por su resistencia inquebrantable y su poderoso hacha de guerra. Maestro de las fortalezas subterráneas.</p>
+                </div>
+            </div>
+            
+            <!-- Héroe 3 - HUMANO -->
+            <div class="character-card">
+                <div class="character-image">
+                    <!-- REEMPLAZAR CON: <img src="images/heroes/humano.jpg" alt="Paladín Humano"> -->
+                    <img src="https://placehold.co/300x400/2c5c7f/ffffff?text=Paladín+Humano" alt="Paladín Humano">
+                </div>
+                <div class="character-info">
+                    <h3 class="character-name">Sir Galen de Lorian</h3>
+                    <div class="character-stats">
+                        <div class="stat">
+                            <div class="stat-value">90</div>
+                            <div class="stat-name">Fuerza</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">80</div>
+                            <div class="stat-name">Magia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">75</div>
+                            <div class="stat-name">Agilidad</div>
+                        </div>
+                    </div>
+                    <p class="character-description">Paladín humano bendecido por la luz sagrada. Su espada brilla con energía divina y puede sanar a sus compañeros heridos.</p>
+                </div>
+            </div>
+
+            <!-- Héroe 4 - NUEVO: Hechicera Élfica -->
+            <div class="character-card">
+                <div class="character-image">
+                    <img src="https://placehold.co/300x400/2c5c7f/ffffff?text=Hechicera+Élfica" alt="Hechicera Élfica">
+                </div>
+                <div class="character-info">
+                    <h3 class="character-name">Aeliana Brisestelar</h3>
+                    <div class="character-stats">
+                        <div class="stat">
+                            <div class="stat-value">50</div>
+                            <div class="stat-name">Fuerza</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">95</div>
+                            <div class="stat-name">Magia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">85</div>
+                            <div class="stat-name">Agilidad</div>
+                        </div>
+                    </div>
+                    <p class="character-description">Hechicera élfica maestra de las artes arcanas. Puede convocar elementales y lanzar hechizos devastadores contra sus enemigos.</p>
+                </div>
+            </div>
+
+            <!-- Héroe 5 - NUEVO: Explorador Humano -->
+            <div class="character-card">
+                <div class="character-image">
+                    <img src="https://placehold.co/300x400/2c5c7f/ffffff?text=Explorador+Humano" alt="Explorador Humano">
+                </div>
+                <div class="character-info">
+                    <h3 class="character-name">Kaelen el Astuto</h3>
+                    <div class="character-stats">
+                        <div class="stat">
+                            <div class="stat-value">70</div>
+                            <div class="stat-name">Fuerza</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">40</div>
+                            <div class="stat-name">Magia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">90</div>
+                            <div class="stat-name">Agilidad</div>
+                        </div>
+                    </div>
+                    <p class="character-description">Explorador humano experto en supervivencia y sigilo. Conoce los terrenos más peligrosos y puede detectar amenazas ocultas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/scripts.js"></script>
+</body>
+</html>
